@@ -1,8 +1,14 @@
-import Vue from 'vue'
-import App from './App.vue'
+import Vue from 'vue';
+import App from './App.vue';
+import { store } from '@/store';
+import '@/assets/css/global.css';
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 new Vue({
-  render: h => h(App),
-}).$mount('#app')
+	store,
+	render: (h) => h(App),
+	beforeCreate() {
+		store.commit('initialiseStore'); // initialize store
+	}
+}).$mount('#app');

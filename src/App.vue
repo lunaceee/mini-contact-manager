@@ -1,28 +1,26 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app" class="container">
+    <h1>ContaCat Manager</h1>
+    <button class="btn-add" id="show-modal" @click="showModal = true">Add contact</button>
+    <contact-form-modal v-if="showModal" @close="showModal = false"></contact-form-modal>
+    <contact-list class="contact-list"></contact-list>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import contactFormModal from "@/components/contactFormModal.vue";
+import contactList from "@/components/contactList.vue";
 
 export default {
-  name: 'App',
+  name: "ContactManager",
+  data() {
+    return {
+      showModal: false,
+    };
+  },
   components: {
-    HelloWorld
-  }
-}
+    contactList,
+    contactFormModal,
+  },
+};
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
