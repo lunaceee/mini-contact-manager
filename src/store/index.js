@@ -18,12 +18,11 @@ export const store = new Vuex.Store({
 		addContact: (state, newContact) => {
 			newContact.avatar = `https://cataas.com/cat/cute/says/${newContact.name}`;
 			state.contactList.push(newContact);
+			localStorage.setItem('store', JSON.stringify(state));
+		},
+		deleteContact: (state, contact) => {
+			state.contactList.splice(state.contactList.indexOf(contact), 1);
+			localStorage.setItem('store', JSON.stringify(state));
 		}
 	}
-});
-
-// Subscribe to store updates
-store.subscribe((mutation, state) => {
-	// Store the state object as a JSON string
-	localStorage.setItem('store', JSON.stringify(state));
 });
